@@ -2,3 +2,7 @@
 
 pkg=$(find *.lod -type f)
 index_patch=$(find *.sql -type f)
+
+sudo lpm --install $pkg --local
+
+# validate index patch

@@ -24,3 +24,6 @@ jobs:
 
       - name: ci/build
         run: ./ci/build
+
+      - name: ci/validate
+        run: ./ci/validate
