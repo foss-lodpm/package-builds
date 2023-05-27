@@ -9,10 +9,19 @@ index_patch=$(find *.sql -type f)
 backblaze-b2 authorize-account $B2_ACCOUNT_ID $B2_APPLICATION_KEY
 backblaze-b2 upload-file linux-amd64-default $pkg packages/$pkg
 
-# TODO(push index)
-# clone repository index if not exists;
-# cd to repo and checkout to linux-amd64-default branch
-# create $pkg branch and push the index file
+index_repository_url="https://github.com/foss-lodpm/repository-index"
+index_repository_dir="repository-index"
+
+if [ ! -d "$index_repository_dir" ]; then
+    git clone "$index_repository_url" "$index_repository_dir"
+fi
+
+cd $index_repository_dir
+git checkout linux-amd64-default
+git checkout -b $index_patch
+cp ../$index_patch ./patches/$index_patch
+
+git status
 
 rm $pkg
 rm $index_patch
