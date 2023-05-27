@@ -32,4 +32,7 @@ jobs:
         env:
           B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
           B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
-        run: ./ci/push
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y backblaze-b2
+          ./ci/push
