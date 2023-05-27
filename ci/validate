@@ -3,6 +3,5 @@
 pkg=$(find *.lod -type f)
 index_patch=$(find *.sql -type f)
 
+sqlite3 ./ci/repository.db < $index_patch
 sudo lpm --install $pkg --local
-
-# validate index patch
