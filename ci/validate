@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 pkg=$(find *.lod -type f)
 index_patch=$(find *.sql -type f)
 
