@@ -22,18 +22,24 @@ jobs:
       - name: ci/pre-build
         run: ./ci/pre-build
 
-      # - name: build the package
-      #   if: github.ref != 'refs/heads/linux-amd64-default'
-      #   run: ./ci/build
+      - name: build the package
+        if: github.ref != 'refs/heads/linux-amd64-default'
+        run: ./ci/build
+
+      - name: Activate SSH
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.REPOSITORY_INDEX_SSH }}
 
       - name: install b2
-        # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
         run: |
           sudo apt-get update -y
           sudo apt-get install -y backblaze-b2
 
       - name: build the package
-        # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
         env:
           B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
           B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
