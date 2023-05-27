@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# push index patch to git
+# push lod file to b2
