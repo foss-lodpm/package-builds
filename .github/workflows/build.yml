@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   build:
-    timeout-minutes: 10
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,17 +22,19 @@ jobs:
       - name: ci/pre-build
         run: ./ci/pre-build
 
-      - name: ci/build
-        run: ./ci/build
+      # - name: build the package
+      #   if: github.ref != 'refs/heads/linux-amd64-default'
+      #   run: ./ci/build
 
-      - name: ci/validate
-        run: ./ci/validate
-
-      - name: ci/push
-        env:
-          B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
-          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+      - name: install b2
+        # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
         run: |
           sudo apt-get update -y
           sudo apt-get install -y backblaze-b2
-          ./ci/push
+
+      - name: build the package
+        # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        env:
+          B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+        run: ./ci/build PUSH_OUTPUTS

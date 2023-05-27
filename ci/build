@@ -6,4 +6,10 @@ added_build_dirs=$(git diff --name-only $default_branch... -- builds | awk -F/ '
 
 for directory in $added_build_dirs; do
     lpm --module builder -b ./$directory
+
+	run ./ci/validate
+
+	if [ "$1" == "PUSH_OUTPUTS" ]; then
+		./ci/push
+	fi
 done

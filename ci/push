@@ -7,5 +7,10 @@ index_patch=$(find *.sql -type f)
 backblaze-b2 authorize-account $B2_ACCOUNT_ID $B2_APPLICATION_KEY
 backblaze-b2 upload-file linux-amd64-default $pkg packages/$pkg
 
-# push index
-# TODO
+# TODO(push index)
+# clone repository index if not exists;
+# cd to repo and checkout to linux-amd64-default branch
+# create $pkg branch and push the index file
+
+rm $pkg
+rm $index_patch
