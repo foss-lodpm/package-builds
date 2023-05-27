@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+pkg=$(find *.lod -type f)
+index_patch=$(find *.sql -type f)
+
+# push pkg to b2
+backblaze-b2 authorize-account $B2_ACCOUNT_ID $B2_APPLICATION_KEY
+backblaze-b2 upload-file linux-amd64-default $pkg packages/$pkg
+
+# push index file to foss-lodpm/repository-index
+index_repository_url="https://github.com/foss-lodpm/repository-index"
+index_repository_dir="repository-index"
+
+if [ ! -d "$index_repository_dir" ]; then
+	git config --global user.email "builder-ci@lodpm.com"
+	git config --global user.name "builder-ci"
+    git clone "$index_repository_url" "$index_repository_dir"
+fi
+
+cd $index_repository_dir
+git checkout linux-amd64-default
+git checkout -b $index_patch
+
+cp ../$index_patch ./patches/$index_patch
+
+git add ./patches/$index_patch
+git commit -m "new index: [$index_patch] created for pkg: [$pkg]"
+git push
+
+# Remove build outputs
+cd ..
+rm $pkg
+rm $index_patch

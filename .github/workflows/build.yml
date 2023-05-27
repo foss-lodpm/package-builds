@@ -1,0 +1,46 @@
+name: build
+on: [push]
+
+jobs:
+  build:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install lpm
+        run: |
+          cargo install lpm --git https://github.com/foss-lodpm/lpm.git --branch stable
+          sudo ln -s ~/.cargo/bin/lpm /usr/bin/lpm # a simple workaround for "sudo: lpm command not found" problem
+
+      - name: lpm --configure
+        run: |
+          sudo lpm --configure
+
+      - name: ci/pre-build
+        run: ./ci/pre-build
+
+      - name: build the package
+        if: github.ref != 'refs/heads/linux-amd64-default'
+        run: ./ci/build
+
+      - name: Activate SSH
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.REPOSITORY_INDEX_SSH }}
+
+      - name: install b2
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y backblaze-b2
+
+      - name: build the package
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        env:
+          B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+        run: ./ci/build PUSH_OUTPUTS

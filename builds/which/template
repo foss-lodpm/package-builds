@@ -1,0 +1,23 @@
+{
+    "name": "which",
+    "description": "GNU tool that displays where a particular program in your path is located",
+    "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
+    "repository": "https://cvs.savannah.gnu.org/viewvc/which/which",
+    "pkg_repository": "https://amd64-default.repository.lodpm.com",
+    "homepage": "http://savannah.gnu.org/projects/which",
+    "arch": "amd64",
+    "kind": "base",
+    "file_checksum_algo": "sha256",
+    "tags": [
+        "base-tools",
+        "gnu-tools",
+		"core-utils"
+    ],
+    "version": {
+        "readable_format": "2.21.0",
+        "major": 2,
+        "minor": 21,
+        "patch": 0
+    },
+    "license": "GPL-3.0-or-later"
+}
