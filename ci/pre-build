@@ -1,0 +1,8 @@
+#!/bin/sh
+
+git clone https://github.com/foss-lodpm/lpm-modules -b stable
+cd lpm-modules/lpm-builder
+make build
+
+sudo lpm --module --add builder ./build/liblpm_builder.so
+lpm --module --list
