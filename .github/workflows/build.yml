@@ -27,3 +27,9 @@ jobs:
 
       - name: ci/validate
         run: ./ci/validate
+
+      - name: ci/push
+        env:
+          B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+        run: ./ci/push

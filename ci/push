@@ -2,3 +2,10 @@
 
 pkg=$(find *.lod -type f)
 index_patch=$(find *.sql -type f)
+
+# push pkg
+backblaze-b2 authorize-account $B2_ACCOUNT_ID $B2_APPLICATION_KEY
+backblaze-b2 upload-file linux-amd64-default $pkg packages/$pkg
+
+# push index
+# TODO
