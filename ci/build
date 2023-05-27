@@ -9,7 +9,7 @@ for directory in $added_build_dirs; do
 
 	./ci/validate
 
-	if [ "$1" == "PUSH_OUTPUTS" ]; then
+	if [ "$1" = "PUSH_OUTPUTS" ]; then
 		./ci/push
 	fi
 done
