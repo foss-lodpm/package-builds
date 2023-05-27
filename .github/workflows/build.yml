@@ -41,6 +41,7 @@ jobs:
       - name: build the package
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
         env:
+          GH_TOKEN: ${{ secrets.REPOSITORY_INDEX_TOKEN }}
           B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
           B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
         run: ./ci/build PUSH_OUTPUTS
