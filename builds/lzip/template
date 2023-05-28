@@ -1,0 +1,22 @@
+{
+    "name": "lzip",
+    "description": "Lossless data compressor based on the LZMA algorithm",
+    "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
+    "repository": "http://web.cvs.savannah.nongnu.org/viewvc/lzip/lzip",
+    "pkg_repository": "https://amd64-default.repository.lodpm.com",
+    "homepage": "https://www.nongnu.org/lzip/lzip.html",
+    "arch": "amd64",
+    "kind": "util",
+    "file_checksum_algo": "sha256",
+    "tags": [
+        "compression",
+        "lzma"
+    ],
+    "version": {
+        "readable_format": "1.23.0",
+        "major": 1,
+        "minor": 23,
+        "patch": 0
+    },
+    "license": "GPL-2.0-or-later"
+}
