@@ -1,0 +1,21 @@
+{
+    "name": "pkg-config",
+    "description": "pkg-config is a computer program that defines and supports a unified interface for querying installed libraries for the purpose of compiling software that depends on them.",
+    "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
+    "repository": "https://gitlab.freedesktop.org/pkg-config/pkg-config",
+    "pkg_repository": "https://amd64-default.repository.lodpm.com",
+    "homepage": "https://www.freedesktop.org/wiki/Software/pkg-config",
+    "arch": "amd64",
+    "kind": "base",
+    "file_checksum_algo": "sha256",
+    "tags": [
+        "base-tools"
+    ],
+    "version": {
+        "readable_format": "0.29.2",
+        "major": 0,
+        "minor": 29,
+        "patch": 2
+    },
+    "license": "GPL-2.0-or-later"
+}

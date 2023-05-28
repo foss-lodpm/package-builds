@@ -1,0 +1,5 @@
+install_to_package pkg-config /usr/bin/pkg-config
+
+install_to_package pkg-config.1 /usr/share/man/man1/pkg-config.1
+
+install_to_package pkg.m4 /usr/share/aclocal/pkg.m4
