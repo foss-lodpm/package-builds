@@ -44,4 +44,4 @@ jobs:
           GH_TOKEN: ${{ secrets.REPOSITORY_INDEX_TOKEN }}
           B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
           B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
-        run: ./ci/build PUSH_OUTPUTS
+        run: ./ci/build FROM_DEFAULT_BRANCH

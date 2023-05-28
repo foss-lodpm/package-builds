@@ -4,7 +4,14 @@ set -e
 
 default_branch=origin/linux-amd64-default
 
-added_build_dirs=$(git diff --name-only $default_branch... -- builds | awk -F/ '{ print $1"/"$2 }' | uniq)
+# Check if the current branch is the default branch
+if [ "$1" = "FROM_DEFAULT_BRANCH" ]; then
+  commit_range="HEAD^..HEAD"
+else
+  commit_range="$default_branch... --"
+fi
+
+added_build_dirs=$(git diff --name-only $commit_range -- builds | awk -F/ '{ print $1"/"$2 }' | uniq)
 
 for directory in $added_build_dirs; do
 	lpm --module builder -b ./$directory
@@ -12,7 +19,7 @@ for directory in $added_build_dirs; do
 	echo "\n-------------- RUNNING ci/validate --------------"
 	./ci/validate
 
-	if [ "$1" = "PUSH_OUTPUTS" ]; then
+	if [ "$1" = "FROM_DEFAULT_BRANCH" ]; then
 		echo "\n-------------- RUNNING ci/push --------------"
 		./ci/push
 	fi
