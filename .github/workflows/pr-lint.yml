@@ -1,0 +1,36 @@
+name: "PR Lint"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  main:
+    name: Validate PR title
+    env:
+      TITLE: ${{ github.event.pull_request.title }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate PR Title
+        run: |
+          # Define the regular expression pattern
+          pattern="^(new-pkg:|update-pkg:|downgrade-pkg:|delete-pkg:|ci:)"
+
+          # Validate the PR title against the pattern
+          if [[ ! $TITLE =~ $pattern ]]; then
+            echo "Invalid PR title. Please start your title with 'new-pkg:', 'update-pkg:', 'downgrade-pkg:', 'delete-pkg:', or 'ci:'"
+            exit 1
+          fi
+
+      - name: Check PR title length
+        run: |
+          title_length=${#TITLE}
+          if [ $title_length -gt 72 ]
+          then
+            echo "PR title is too long (greater than 72 characters)"
+            exit 1
+          fi
