@@ -6,9 +6,9 @@ default_branch=origin/linux-amd64-default
 
 # Check if the current branch is the default branch
 if [ "$1" = "FROM_DEFAULT_BRANCH" ]; then
-  commit_range="HEAD^..HEAD"
+	commit_range="HEAD^..HEAD"
 else
-  commit_range="$default_branch... --"
+	commit_range="$default_branch... --"
 fi
 
 added_build_dirs=$(git diff --name-only $commit_range -- builds | awk -F/ '{ print $1"/"$2 }' | uniq)
@@ -23,4 +23,7 @@ for directory in $added_build_dirs; do
 		echo "\n-------------- RUNNING ci/push --------------"
 		./ci/push
 	fi
+
+	rm $(find *.lod -type f) # clean pkg
+	rm $(find *.sql -type f) # clean index
 done
