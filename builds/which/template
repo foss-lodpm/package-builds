@@ -3,7 +3,7 @@
     "description": "GNU tool that displays where a particular program in your path is located",
     "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
     "repository": "https://cvs.savannah.gnu.org/viewvc/which/which",
-    "pkg_repository": "https://amd64-default.repository.lodpm.com",
+    "pkg_repository": "linux-amd64-default",
     "homepage": "http://savannah.gnu.org/projects/which",
     "arch": "amd64",
     "kind": "base",

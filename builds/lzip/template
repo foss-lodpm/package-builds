@@ -3,7 +3,7 @@
     "description": "Lossless data compressor based on the LZMA algorithm",
     "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
     "repository": "http://web.cvs.savannah.nongnu.org/viewvc/lzip/lzip",
-    "pkg_repository": "https://amd64-default.repository.lodpm.com",
+    "pkg_repository": "linux-amd64-default",
     "homepage": "https://www.nongnu.org/lzip/lzip.html",
     "arch": "amd64",
     "kind": "util",
