@@ -19,9 +19,9 @@ jobs:
           cargo install lpm --git https://github.com/foss-lodpm/lpm.git --branch stable
           sudo ln -s ~/.cargo/bin/lpm /usr/bin/lpm # a simple workaround for "sudo: lpm command not found" problem
 
-      - name: lpm --configure
+      - name: lpm --update --all
         run: |
-          sudo lpm --configure
+          sudo lpm --update --all
 
       - name: ci/pre-build
         run: ./ci/pre-build
