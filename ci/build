@@ -11,7 +11,7 @@ else
 	commit_range="$default_branch... --"
 fi
 
-added_build_dirs=$(git diff --name-only $commit_range -- builds | awk -F/ '{ print $1"/"$2 }' | uniq)
+added_build_dirs=$(git diff --name-only $commit_range -- builds | awk -F/ '{ print $1"/"$2"/"$3 }' | uniq)
 
 for directory in $added_build_dirs; do
 	lpm --module builder -b ./$directory
