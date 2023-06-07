@@ -5,8 +5,8 @@ set -e
 pkg=$(find *.lod -type f)
 index_patch=$(find *.sql -type f)
 
-# push index file to foss-lodpm/repository-index
-index_repository_url="git@github.com:foss-lodpm/repository-index.git"
+# push index file to lodosgroup/repository-index
+index_repository_url="git@github.com:lodosgroup/repository-index.git"
 index_repository_dir="repository-index"
 
 if [ ! -d "$index_repository_dir" ]; then
