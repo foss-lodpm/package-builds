@@ -1,0 +1,3 @@
+install_to_package ed /usr/bin/ed
+
+install_to_package doc/ed.1 /usr/share/man/man1/ed.1

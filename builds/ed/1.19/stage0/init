@@ -1,0 +1,3 @@
+curl -L https://download.savannah.gnu.org/releases/ed/ed-1.19.tar.lz > ed.tar.lz
+validate_checksum "ed.tar.lz" "ce2f2e5c424790aa96d09dacb93d9bbfdc0b7eb6249c9cb7538452e8ec77cd48"
+tar -xvf ed.tar.lz --strip 1 -C $SRC

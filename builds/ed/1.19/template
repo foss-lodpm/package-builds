@@ -1,0 +1,35 @@
+{
+    "name": "ed",
+    "description": "GNU Line-oriented text editor",
+    "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
+    "source_repository": "https://cvs.savannah.gnu.org/viewvc/ed/ed",
+    "homepage": "https://www.gnu.org/software/ed/ed.html",
+    "arch": "amd64",
+    "kind": "text-editor",
+    "file_checksum_algo": "sha256",
+    "tags": [
+        "text-editor",
+        "gnu-tools"
+    ],
+    "version": {
+        "readable_format": "1.19.0",
+        "major": 1,
+        "minor": 19,
+        "patch": 0
+    },
+    "license": "GPL-3.0-or-later",
+    "mandatory_dependencies": {
+        "build": [
+            {
+                "name": "lzip",
+                "version": {
+                    "major": 1,
+                    "minor": 23,
+                    "patch": 0,
+                    "readable_format": "1.23.0",
+                    "condition": ">="
+                }
+            }
+        ]
+    }
+}
