@@ -23,6 +23,11 @@ jobs:
         run: |
           sudo lpm --update --all
 
+      - name: Sync with 'linux-amd64-default' repository
+        run: |
+          sudo lpm --repository --add linux-amd64-default linux-amd64-default.lodpm.com
+          sudo lpm --update --index
+
       - name: ci/pre-build
         run: ./ci/pre-build
 
