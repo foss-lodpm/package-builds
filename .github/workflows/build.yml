@@ -1,56 +1,56 @@
-# name: build
-# on:
-#   push:
-#     paths:
-#       - "builds/**"
-#       - "ci/**"
+name: build
+on:
+  push:
+    paths:
+      - "builds/**"
+      - "ci/**"
 
-# jobs:
-#   build:
-#     timeout-minutes: 60
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#         with:
-#           fetch-depth: 0
+jobs:
+  build:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-#       - name: Install lpm
-#         run: |
-#           cargo install lpm --git https://github.com/lodosgroup/lpm.git --branch stable
-#           sudo ln -s ~/.cargo/bin/lpm /usr/bin/lpm # a simple workaround for "sudo: lpm command not found" problem
+      - name: Install lpm
+        run: |
+          cargo install lpm --git https://github.com/lodosgroup/lpm.git --branch stable
+          sudo ln -s ~/.cargo/bin/lpm /usr/bin/lpm # a simple workaround for "sudo: lpm command not found" problem
 
-#       - name: lpm --update --all
-#         run: |
-#           sudo lpm --update --all
+      - name: lpm --update --all
+        run: |
+          sudo lpm --update --all
 
-#       - name: Sync with 'linux-amd64-default' repository
-#         run: |
-#           sudo lpm --repository --add linux-amd64-default linux-amd64-default.lodpm.com
-#           sudo lpm --update --index
+      - name: Sync with 'linux-amd64-default' repository
+        run: |
+          sudo lpm --repository --add linux-amd64-default linux-amd64-default.lodpm.com
+          sudo lpm --update --index
 
-#       - name: ci/pre-build
-#         run: ./ci/pre-build
+      - name: ci/pre-build
+        run: ./ci/pre-build
 
-#       - name: build the package (for PR)
-#         if: github.ref != 'refs/heads/linux-amd64-default'
-#         run: ./ci/build
+      - name: build the package (for PR)
+        if: github.ref != 'refs/heads/linux-amd64-default'
+        run: ./ci/build
 
-#       - name: Activate SSH (for linux-amd64-default branch)
-#         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
-#         uses: webfactory/ssh-agent@v0.5.4
-#         with:
-#           ssh-private-key: ${{ secrets.REPOSITORY_INDEX_SSH }}
+      - name: Activate SSH (for linux-amd64-default branch)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.REPOSITORY_INDEX_SSH }}
 
-#       - name: install b2 (for linux-amd64-default branch)
-#         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
-#         run: |
-#           sudo apt-get update -y
-#           sudo apt-get install -y backblaze-b2
+      - name: install b2 (for linux-amd64-default branch)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y backblaze-b2
 
-#       - name: build the package (for linux-amd64-default branch)
-#         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
-#         env:
-#           GH_TOKEN: ${{ secrets.REPOSITORY_INDEX_TOKEN }}
-#           B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
-#           B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
-#         run: ./ci/build FROM_DEFAULT_BRANCH
+      - name: build the package (for linux-amd64-default branch)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
+        env:
+          GH_TOKEN: ${{ secrets.REPOSITORY_INDEX_TOKEN }}
+          B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+        run: ./ci/build FROM_DEFAULT_BRANCH
