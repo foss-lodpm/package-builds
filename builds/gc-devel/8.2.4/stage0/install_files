@@ -1,0 +1,24 @@
+declare -A files=(
+  # Libraries
+  [".libs/libcord.a"]="/usr/lib/libcord.a"
+  [".libs/libcord.so"]="/usr/lib/libcord.so"
+  [".libs/libgc.a"]="/usr/lib/libgc.a"
+  [".libs/libgc.so"]="/usr/lib/libgc.so"
+
+  ["bdw-gc.pc"]="/usr/lib/pkgconfig/bdw-gc.pc"
+
+  ["README.QUICK"]="/usr/share/licenses/gc/README.QUICK"
+  ["doc/gc.man"]="/usr/share/man/man3/gc.3"
+)
+
+for source_path in "${!files[@]}"; do
+  destination_path="${files[$source_path]}"
+  install_to_package "$source_path" "$destination_path"
+done
+
+copy_to_package doc /usr/share/doc/gc
+
+install_to_package include/extra/gc.h /usr/include/gc.h
+install_to_package include/extra/gc_cpp.h /usr/include/gc_cpp.h
+
+copy_to_package include/* /usr/include/gc
