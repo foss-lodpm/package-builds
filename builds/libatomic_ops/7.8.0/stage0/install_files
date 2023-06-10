@@ -1,0 +1,26 @@
+declare -A files=(
+  # Shared libraries
+  ["src/.libs/libatomic_ops_gpl.so"]="/usr/lib/libatomic_ops_gpl.so"
+  ["src/.libs/libatomic_ops_gpl.so.1"]="/usr/lib/libatomic_ops_gpl.so.1"
+  ["src/.libs/libatomic_ops_gpl.so.1.2.0"]="/usr/lib/libatomic_ops_gpl.so.1.2.0"
+  ["src/.libs/libatomic_ops.so"]="/usr/lib/libatomic_ops.so"
+  ["src/.libs/libatomic_ops.so.1"]="/usr/lib/libatomic_ops.so.1"
+  ["src/.libs/libatomic_ops.so.1.2.0"]="/usr/lib/libatomic_ops.so.1.2.0"
+  # Docs
+  ["AUTHORS"]="/usr/share/doc/libatomic_ops/AUTHORS"
+  ["ChangeLog"]="/usr/share/doc/libatomic_ops/ChangeLog"
+  ["COPYING"]="/usr/share/doc/libatomic_ops/COPYING"
+  ["LICENSE"]="/usr/share/doc/libatomic_ops/LICENSE"
+  ["README_details.txt"]="/usr/share/doc/libatomic_ops/README_details.txt"
+  ["README_malloc.txt"]="/usr/share/doc/libatomic_ops/README_malloc.txt"
+  ["README_stack.txt"]="/usr/share/doc/libatomic_ops/README_stack.txt"
+  ["README_win32.txt"]="/usr/share/doc/libatomic_ops/README_win32.txt"
+  ["README.md"]="/usr/share/doc/libatomic_ops/README.md"
+  # License
+  ["LICENSE"]="/usr/share/licenses/libatomic_ops/LICENSE"
+)
+
+for source_path in "${!files[@]}"; do
+  destination_path="${files[$source_path]}"
+  install_to_package "$source_path" "$destination_path"
+done
