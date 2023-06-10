@@ -1,0 +1,22 @@
+{
+    "name": "libatomic_ops",
+    "description": "Semi-portable access to hardware-provided atomic memory update operations on a number of architectures.",
+    "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
+    "source_repository": "https://github.com/ivmai/libatomic_ops",
+    "homepage": "https://github.com/ivmai/libatomic_ops",
+    "arch": "amd64",
+    "kind": "library",
+    "file_checksum_algo": "sha256",
+    "tags": [
+        "atomicity",
+        "synchronization",
+		"concurrency"
+    ],
+    "version": {
+        "readable_format": "7.8.0",
+        "major": 7,
+        "minor": 8,
+        "patch": 0
+    },
+    "license": "GPL-2.0-or-later, MIT"
+}
