@@ -1,0 +1,14 @@
+declare -A files=(
+  # Shared libraries
+  [".libs/libcord.so"]="/usr/lib/libcord.so"
+  [".libs/libcord.so.1"]="/usr/lib/libcord.so.1"
+  [".libs/libcord.so.1.5.0"]="/usr/lib/libcord.so.1.5.0"
+  [".libs/libgc.so"]="/usr/lib/libgc.so"
+  [".libs/libgc.so.1"]="/usr/lib/libgc.so.1"
+  [".libs/libgc.so.1.5.2"]="/usr/lib/libgc.so.1.5.2"
+)
+
+for source_path in "${!files[@]}"; do
+  destination_path="${files[$source_path]}"
+  install_to_package "$source_path" "$destination_path"
+done
