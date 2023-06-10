@@ -1,0 +1,35 @@
+{
+    "name": "gc-devel",
+    "description": "Development library package for gc.",
+    "maintainer": "Lpm Core Maintainer <contact@onurozkan.dev>",
+    "source_repository": "https://github.com/ivmai/bdwgc",
+    "homepage": "https://www.hboehm.info/gc/",
+    "arch": "amd64",
+    "kind": "library",
+    "file_checksum_algo": "sha256",
+    "tags": [
+        "memory",
+        "garbage-collector"
+    ],
+    "version": {
+        "readable_format": "8.2.4",
+        "major": 8,
+        "minor": 2,
+        "patch": 4
+    },
+    "license": "MIT",
+    "mandatory_dependencies": {
+        "runtime": [
+            {
+                "name": "gc",
+                "version": {
+                    "major": 8,
+                    "minor": 2,
+                    "patch": 4,
+                    "readable_format": "8.2.4",
+                    "condition": "="
+                }
+            }
+        ]
+    }
+}
