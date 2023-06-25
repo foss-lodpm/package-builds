@@ -10,8 +10,8 @@ index_repository_url="git@github.com:lodosgroup/repository-index.git"
 index_repository_dir="repository-index"
 
 if [ ! -d "$index_repository_dir" ]; then
-	git config --global user.email "builder-ci@lodpm.com"
-	git config --global user.name "builder-ci"
+	git config --global user.email "lodos.ci@gmail.com"
+	git config --global user.name "lodos-ci"
 	git clone "$index_repository_url" "$index_repository_dir"
 fi
 
