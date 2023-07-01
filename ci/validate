@@ -9,4 +9,4 @@ echo "validating $index_patch"
 sqlite3 ./ci/repository.db <$index_patch
 
 echo "validating $pkg"
-sudo lpm --install $pkg --local
+sudo lpm --yes --install $pkg --local
