@@ -28,6 +28,5 @@ gh pr create -B linux-amd64-default -H $index_patch --title "new index: [$index_
 
 cd ..
 
-# push pkg to b2
-backblaze-b2 authorize-account $B2_ACCOUNT_ID $B2_APPLICATION_KEY
-backblaze-b2 upload-file linux-amd64-default $pkg packages/$pkg
+# push to package server
+scp -oStrictHostKeyChecking=no -P 22 $pkg root@161.97.79.144:/home/packages

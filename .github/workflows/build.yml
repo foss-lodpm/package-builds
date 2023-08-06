@@ -39,18 +39,10 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.REPOSITORY_INDEX_SSH }}
-
-      - name: install b2 (for linux-amd64-default branch)
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y backblaze-b2
+          ssh-private-key: |
+            ${{ secrets.REPOSITORY_INDEX_SSH }}
+            ${{ secrets.PACKAGE_SERVER_SSH }}
 
       - name: build the package (for linux-amd64-default branch)
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/linux-amd64-default'
-        env:
-          GH_TOKEN: ${{ secrets.REPOSITORY_INDEX_TOKEN }}
-          B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
-          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
         run: ./ci/build FROM_DEFAULT_BRANCH
