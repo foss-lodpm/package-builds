@@ -16,7 +16,7 @@ jobs:
 
       - name: Install lpm
         run: |
-          cargo install lpm --git https://github.com/lodosgroup/lpm.git --branch stable
+          cargo install lpm --git https://github.com/lodosgroup/lpm.git --branch main
           sudo ln -s ~/.cargo/bin/lpm /usr/bin/lpm # a simple workaround for "sudo: lpm command not found" problem
 
       - name: lpm --update --all
