@@ -2,7 +2,7 @@
 
 set -e
 
-git clone https://github.com/lodosgroup/lpm-modules -b stable
+git clone https://github.com/lodosgroup/lpm-modules -b main
 cd lpm-modules/lpm-builder
 make build
 
